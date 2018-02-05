@@ -1,43 +1,15 @@
-var superHeros = {
-  "squadName" : "Super Hero Squad",
-  "homeTown" : "Metro City",
-  "formed" : 2016,
-  "secretBase" : "Super Tower",
-  "active" : true,
-  "members" : [
-    {
-      "name" : "Molecule Man",
-      "age" : 29,
-      "secretIdentity" : "Dan Jukes",
-      "powers" : [
-        "Radiation resistance",
-        "Turning tiny",
-        "Radiation blast",
-      ]
-    },
-    {
-      "name" : "Madame Uppercut",
-      "age" : 39,
-      "secretIdentity" : "Jane Wilson",
-      "powers" : [
-        "Million tonne Punch",
-        "Damage resistance",
-        "Superhuman reflexes"
-      ]
-    },
-    {
-      "name" : "Eternal Flame",
-      "age" : 1000000,
-      "secretIdentity" : "Unknown",
-      "powers" : [
-        "Immortality",
-        "Heat Immunity",
-        "Inferno",
-        "Teleportation",
-        "Interdimensional travel"
-      ]
-    }
-  ]
-};
+var requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
 
-console.log(superHeros.members[0].secretIdentity)
+var request = new XMLHttpRequest();
+
+request.open('GET', requestURL);
+
+request.responseType = 'json';
+
+request.send();
+
+request.onload = function() {
+  var superHeros = request.response;
+  populateHeader(superHeros);
+  showHeroes(superHeros);
+}
